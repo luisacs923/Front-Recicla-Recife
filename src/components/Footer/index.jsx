@@ -1,15 +1,23 @@
 import React from "react";
-import { Descricao, Autoria, Container } from "./style";
+import { Descricao, AutoriaContainer, Container } from "./style";
+import { GithubOutlined, LinkedinFilled } from "@ant-design/icons";
 
 export default function Footer(){
     return ( 
         <Container>
             <Descricao>
-                <p>Criado para demonstração de projeto da turma 5 do programa de Formação Acelerada em Programação da Softex Pernambuco</p>
+                <p>Página criada para a atividade da turma de BackEnd da Softex</p>
+                <p>Recife 2024 ©</p>
             </Descricao>
-            <Autoria>
+            <AutoriaContainer>
                 <p>Criado por Luisa Correia</p>
-            </Autoria>
+                <a href="https://github.com/luisacs923" target="_blank">
+                    <GithubOutlined />
+                </a>
+                <a href="https://www.linkedin.com/in/luisacorreia923/" target="_blank">
+                    <LinkedinFilled />
+                </a>
+            </AutoriaContainer>
         </Container>
     );
 }

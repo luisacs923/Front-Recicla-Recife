@@ -1,30 +1,35 @@
 import styled from "styled-components";
 
 export const Descricao = styled.div`
-  height: 80%;
+  width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content:center;
-
-  font-size: 12px;
-  font-weight: 600;
-  font-style: normal;
+  
+  flex: 1;
 `;
 
-export const Autoria = styled.div`
+export const AutoriaContainer = styled.div`
   height: 20%;
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #0C6938;
-  font-size: 10px;
-  font-weight: 600;
-  font-style: normal;
+  gap: 10px;
+  
+  padding: 5px;
 `;
 
-export const Container = styled.div` 
-  background-color: #14AE5C;
+export const Container = styled.div`
+  background-color: #14AE5C; 
   color: white;
   height: 10vh;
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+
+  font-size: 10px;
+  font-weight: normal;
+  font-style: normal;
 `;
