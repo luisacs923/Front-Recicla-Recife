@@ -20,7 +20,7 @@ export const AutoriaContainer = styled.div`
   padding: 5px;
 `;
 
-export const Container = styled.div`
+export const Container = styled.footer`
   background-color: #14AE5C; 
   color: white;
   height: 10vh;
