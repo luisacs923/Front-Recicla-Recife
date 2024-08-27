@@ -28,6 +28,9 @@ export const theme = {
       headerBg: styles.gray,
       headerFontSize: 16,
     },
+    Form: {
+      labelRequiredFontSize: 12,
+    }
   }
 }
 

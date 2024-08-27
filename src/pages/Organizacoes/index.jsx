@@ -17,7 +17,7 @@ export default function Organizacoes(){
             <Container>
                 <Text.H1>Organizações</Text.H1>
                 <SubContainer>
-                    <Text.Paragraph>Gostaria de cadastrar uma Organização? <a href="/organizacoes/cadastro">Clique aqui!</a></Text.Paragraph>
+                    <Text.Paragraph>Gostaria de cadastrar uma Organização? <a href="/organizacoes/cadastro" style={{textDecoration: 'underline'}}>Clique aqui!</a></Text.Paragraph>
                     <div>
                         <Text>Buscar uma Organização:</Text>
                         <Input style={{letterSpacing: -1, fontSize: 16}} placeholder="Digite o nome da Organização"/>
