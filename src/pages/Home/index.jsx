@@ -16,9 +16,11 @@ export default function Home(){
                     <Text.Paragraph>
                         Você participa de uma Organização que realiza Eventos e atividades de Reciclagem? Cadastre-se já!
                     </Text.Paragraph>
-                    <Button>
-                        Cadastrar Organização
-                    </Button>
+                    <Link to='/organizacoes/cadastro'>
+                        <Button>
+                            Cadastrar Organização
+                        </Button>
+                    </Link>
                 </div>
                 <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
                     <Text.Paragraph>

@@ -11,6 +11,11 @@ import OrganizationDisplay from "./components/OrganizationDisplay";
 export default function Organizacoes(){
 
     const [selectedOrganization, setSelectedOrganization] = useState(null);
+    // const [organizacoes, setOrganizacoes] = useState([])
+    // useEffect(()=> {
+    //     const result = axios.get("http://localhost:3000/organizacoes")
+    //     setOrganizacoes(result.data)
+    // }, [])
 
     return (
         <Template>

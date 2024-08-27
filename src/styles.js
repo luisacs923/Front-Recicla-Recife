@@ -30,6 +30,10 @@ export const theme = {
     },
     Form: {
       labelRequiredFontSize: 12,
+    },
+    Input: {
+      activeBorderColor: styles.secondaryColor,
+      activeShadow: '0 0 0 2px rgba(12,	105,	56, 0.1)'
     }
   }
 }
