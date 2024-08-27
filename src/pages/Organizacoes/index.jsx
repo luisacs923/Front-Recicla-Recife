@@ -6,7 +6,7 @@ import { Divider, Input, List } from "antd";
 import Card from "../../components/Card";
 import styles from "../../styles";
 import Text from "../../components/Text";
-import EventsDisplay from "./components/EventsDisplay";
+import OrganizationDisplay from "./components/OrganizationDisplay";
 
 export default function Organizacoes(){
 
@@ -19,7 +19,7 @@ export default function Organizacoes(){
                 <SubContainer>
                     <Text.Paragraph>Gostaria de cadastrar uma Organização? <a href="/organizacoes/cadastro">Clique aqui!</a></Text.Paragraph>
                     <div>
-                        <Text>Buscar uma organização:</Text>
+                        <Text>Buscar uma Organização:</Text>
                         <Input style={{letterSpacing: -1, fontSize: 16}} placeholder="Digite o nome da Organização"/>
                     </div>
                     <div style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
@@ -36,11 +36,11 @@ export default function Organizacoes(){
                                 <List.Item key={item.id} onClick={() => setSelectedOrganization(item.id)}>
                                     <Card title={item.nome} size="small">
                                         <CardText>Responsável: {item.responsavel}</CardText>
-                                        <Divider style={{marginTop: 0, marginBottom: 0}} />
+                                        <Divider style={{margin: '5px 0px'}} />
                                         <CardText>CNPJ: {item.cnpj}</CardText>
-                                        <Divider style={{marginTop: 0, marginBottom: 0}} />
+                                        <Divider style={{margin: '5px 0px'}} />
                                         <CardText>Localização: {item.localizacao}</CardText>
-                                        <Divider style={{marginTop: 0, marginBottom: 0}} />
+                                        <Divider style={{margin: '5px 0px'}} />
                                         <CardText>Eventos: <span style={{color: styles.primaryColor, fontWeight: 'bold'}}>{item.eventos}</span></CardText>
                                     </Card>
                                 </List.Item>
@@ -51,7 +51,7 @@ export default function Organizacoes(){
                     <>
                         <SubContainer>
                             <Text.H2 style={{textAlign: 'center'}}>Detalhes da Organização {mocked.find(el => el.id === selectedOrganization).nome}</Text.H2>
-                            <EventsDisplay organizacao={mocked.find(m => m.id === selectedOrganization)} />
+                            <OrganizationDisplay organizacao={mocked.find(m => m.id === selectedOrganization)} />
                         </SubContainer>
                         <SubContainer>
                             <div style={{display: 'flex', alignContent: 'center', justifyContent:'space-around'}}>

@@ -5,6 +5,7 @@ import styles from "../../styles";
 export const StyledCard = styled(Card)`
   .ant-card-head {
     font-size: 16px;
+    letter-spacing: -1px;
   }
   &:hover {
     cursor: pointer;

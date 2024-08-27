@@ -2,7 +2,7 @@ import React from "react";
 import { Container, DetailContainer, DetailsContainer, TitleContainer } from "./style";
 import EventDetail from "../EventDetail";
 
-export default function EventsDisplay({organizacao}) {
+export default function OrganizationDisplay({organizacao}) {
   return (
     <Container>
       <TitleContainer>
