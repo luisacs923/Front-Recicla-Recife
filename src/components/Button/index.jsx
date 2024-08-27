@@ -1,10 +1,10 @@
 import React from "react";
-import { StyledButton } from "./style";
+import { StyledButton, StyledButtonAntd } from "./style";
 
 export default function Button(props) {
   return (
-    <StyledButton>
+    <StyledButtonAntd>
       {props.children}
-    </StyledButton>
+    </StyledButtonAntd>
   )
 }
