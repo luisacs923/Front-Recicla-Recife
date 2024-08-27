@@ -24,7 +24,7 @@ function App() {
         <Route path='/eventos' element={<Eventos/>}/>
         <Route path='/estrategias' element={<Estrategias/>}/>
         <Route path='/organizacoes/cadastro' element={<OrganizacaoCadastro/>}/>
-        <Route path='/eventos/cadastro' element={<EventoCadastro/>}/>
+        <Route path='/eventos/cadastro' element={<EventoCadastro />}/>
         <Route path='/estrategias/cadastro' element={<EstrategiaCadastro/>}/>
       </Routes>
       <Footer/>

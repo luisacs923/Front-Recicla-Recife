@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import Template from "../../../components/Template";
-import { Container, Title, SubContainer, SubTitle, CardText } from "./style.js";
+import { Container, SubContainer, } from "./style.js";
 import Button from "../../../components/Button";
-import { Form, Input } from "antd";
-import Card from "../../../components/Card";
-import styles from "../../../styles.js";
+import { Form } from "antd";
 import Text from "../../../components/Text";
 import { StyledFormItem, StyledInput } from "./style.js";
 
@@ -31,7 +29,6 @@ export default function OrganizacaoCadastro(){
                                 },
                               ]}
                             style={{letterSpacing: -1}}
-                            className="form-item"
                         >   
                             <StyledInput />
                         </StyledFormItem>
@@ -45,7 +42,6 @@ export default function OrganizacaoCadastro(){
                                 },
                               ]}
                             style={{letterSpacing: -1}}
-                            className="form-item"
                         >   
                             <StyledInput />
                         </StyledFormItem>
@@ -59,7 +55,6 @@ export default function OrganizacaoCadastro(){
                                 },
                               ]}
                             style={{letterSpacing: -1}}
-                            className="form-item"
                         >   
                             <StyledInput />
                         </StyledFormItem>
@@ -74,7 +69,6 @@ export default function OrganizacaoCadastro(){
                                 },
                               ]}
                             style={{letterSpacing: -1}}
-                            className="form-item"
                         >   
                             <StyledInput />
                         </StyledFormItem>
