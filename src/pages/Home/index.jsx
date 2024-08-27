@@ -1,7 +1,8 @@
 import React from "react"
 import Chamada from "./components/Chamada/index.jsx";
-import { Button, ChamadaContainer, Container, Text } from "./style.js";
+import { ChamadaContainer, Container, Text } from "./style.js";
 import { Link } from "react-router-dom";
+import Button from "../../components/Button/index.jsx";
 
 export default function Home(){
     return (
