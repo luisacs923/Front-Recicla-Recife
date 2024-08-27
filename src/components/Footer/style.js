@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import styles from "../../styles.js";
 
 export const Descricao = styled.div`
   width: 100%;
@@ -21,7 +22,7 @@ export const AutoriaContainer = styled.div`
 `;
 
 export const Container = styled.footer`
-  background-color: #14AE5C; 
+  background-color: ${styles.primaryColor}; 
   color: white;
   height: 10vh;
   display: flex;

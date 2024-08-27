@@ -1,5 +1,5 @@
-import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import styles from "../../styles";
 
 export const Container = styled.header`
   height: 10vh;
@@ -10,6 +10,7 @@ export const Container = styled.header`
   font-size: 32px;
   letter-spacing: -1px;
   background: #FFF;
+  
 
   filter: drop-shadow(0 1px 1px #d9d9d9);
 
@@ -29,5 +30,6 @@ export const ImgContainer = styled.div`
 export const MenuItem = styled.div`
   width: 200px;
   text-align: center;
+  color: ${styles.primaryTextColor};
 
 `

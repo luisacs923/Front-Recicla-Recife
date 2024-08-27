@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import styles from "../../../../styles";
 
 export const Container = styled.div`
   top: 225px;
@@ -19,6 +20,7 @@ export const Titulo = styled.h1`
   font-size: 32px;
   letter-spacing: -1px;
   line-height: 48px;
+  color: ${styles.primaryTextColor};
 `
 
 export const Descricao = styled.p`
@@ -28,4 +30,5 @@ export const Descricao = styled.p`
   line-height: 30px;
   text-align: justify;
   letter-spacing: -1px;
+  color: ${styles.primaryTextColor};
 `
