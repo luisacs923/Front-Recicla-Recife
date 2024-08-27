@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const StyledMenuItem = styled(Typography.Text)`
   letter-spacing: -1px;
-  font-size: 32px;
+  font-size: 24px;
 `
 
 export const StyledBannerTitle = styled(Typography.Title)`
