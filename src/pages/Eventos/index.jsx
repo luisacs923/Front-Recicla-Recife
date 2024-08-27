@@ -19,7 +19,7 @@ export default function Eventos(){
                 <SubContainer>
                     <Text.Paragraph>Gostaria de cadastrar um Evento? <a href="/eventos/cadastro" style={{textDecoration: 'underline'}}>Clique aqui!</a></Text.Paragraph>
                     <div>
-                        <Text>Buscar uma Evento:</Text>
+                        <Text>Buscar um Evento:</Text>
                         <Input style={{letterSpacing: -1, fontSize: 16}} placeholder="Digite o nome do Evento"/>
                     </div>
                     <div style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
