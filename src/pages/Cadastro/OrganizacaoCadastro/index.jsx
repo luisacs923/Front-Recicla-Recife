@@ -10,16 +10,11 @@ import axios from "axios"
 
 export default function OrganizacaoCadastro(){
     const [form] = Form.useForm();
-    const [organizacao,setOrganizacao] = useState([])
-    useEffect(() => {
-      // const result = axios.post("http://localhost:3000/organizacoes/busca")
-      // // setOrganizacao(result.data);
-      // console.log(result);
-    }, [])
 
-    const onFinish = (values) => {
-        console.log(values);
-      };
+    const onFinish = async (values) => {
+      await axios.post("http://localhost:3000/organizacoes/cadastro", values);
+      form.resetFields();
+    };
 
     return (
         <Template>

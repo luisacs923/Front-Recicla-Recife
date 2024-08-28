@@ -5,18 +5,19 @@ import Button from "../../../components/Button/index.jsx";
 import { Form, Select } from "antd";
 import Text from "../../../components/Text/index.jsx";
 import { StyledFormItem, StyledInput } from "./style.js";
+import axios from "axios";
 
 export default function EstrategiaCadastro(){
     const [form] = Form.useForm();
 
     const efetividades = [
       {
-        value: "Ótimo",
-        label: "Ótimo",
+        value: "Excelente",
+        label: "Excelente",
       },
       {
-        value: "Bom",
-        label: "Bom",
+        value: "Boa",
+        label: "Boa",
       },
       {
         value: "Regular",
@@ -24,8 +25,9 @@ export default function EstrategiaCadastro(){
       },
     ];
 
-    const onFinish = (values) => {
-        console.log(values);
+    const onFinish = async (values) => {
+        await axios.post("http://localhost:3000/estrategias/cadastro", values);
+        form.resetFields();
       };
 
     return (

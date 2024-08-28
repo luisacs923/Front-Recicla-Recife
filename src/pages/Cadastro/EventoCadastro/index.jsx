@@ -1,17 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Template from "../../../components/Template/index.jsx";
 import { Container, SubContainer, } from "./style.js";
 import Button from "../../../components/Button/index.jsx";
 import { Form, Select } from "antd";
 import Text from "../../../components/Text/index.jsx";
 import { StyledFormItem, StyledInput } from "./style.js";
+import axios from "axios";
 
 export default function EventoCadastro(){
     const [form] = Form.useForm();
+    const [organizacoes, setOrganizacoes] = useState([]);
 
-    const onFinish = (values) => {
-        console.log(values);
-      };
+    useEffect(() => {
+      async function listarOrganizacoes() {
+        const result = await axios.get("http://localhost:3000/organizacoes/busca");
+        setOrganizacoes(result.data.data);
+      }
+      listarOrganizacoes();
+    },[])
+
+    const onFinish = async (values) => {
+      await axios.post("http://localhost:3000/eventos/cadastro", values)
+      form.resetFields();
+    };
 
     return (
         <Template>
@@ -30,7 +41,7 @@ export default function EventoCadastro(){
                               ]}
                             style={{letterSpacing: -1}}
                         >   
-                            <Select options={mocked.map(m => ({value: m.id, label: m.nome}))} />
+                            <Select options={organizacoes.map(m => ({value: m.ID, label: m.nome_organizacao}))} />
                         </StyledFormItem>
                       <StyledFormItem
                             name='nome_evento'
