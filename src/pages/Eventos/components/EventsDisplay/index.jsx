@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Container, DetailContainer, DetailsContainer, TitleContainer } from "./style";
 import StrategyDetail from "../StrategyDetail";
 import axios from "axios";
+
 export default function EventsDisplay({evento}) {
   const dataFormatted = new Date(evento.data_evento).toLocaleDateString();
   const [estrategias, setEstrategias] = useState([])
@@ -36,24 +37,3 @@ export default function EventsDisplay({evento}) {
     </Container>
   );
 }
-
-const mocked = [
-  {
-    id: 1,
-    nome: "Reciclagem",
-    efetividade: "Ótimo",
-    descricao: "Coleta e separação de materiais recicláveis como papel, plástico e vidro",
-  },
-  {
-    id: 2,
-    nome: "Redução de Embalagens ",
-    efetividade: "Bom",
-    descricao: "Implementação de práticas para reduzir o uso de embalagens descartáveis.",
-  },
-  {
-    id: 3,
-    nome: " Recuperação de Energia ",
-    efetividade: "Regular",
-    descricao: "Aproveitamento dos resíduos para gerar energia com processos como incineração controlada.",
-  },
-]

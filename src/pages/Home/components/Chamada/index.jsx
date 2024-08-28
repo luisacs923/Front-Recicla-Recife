@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Descricao, Titulo } from "./style";
+import { Container } from "./style";
 import logomarca from "../../../../assets/Logo Estendida.svg";
 import Text from "../../../../components/Text";
 

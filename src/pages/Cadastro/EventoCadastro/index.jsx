@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Template from "../../../components/Template/index.jsx";
-import { Container, SubContainer, } from "./style.js";
+import { Container, SubContainer, StyledFormItem, StyledInput } from "./style.js";
 import Button from "../../../components/Button/index.jsx";
 import { Form, Select } from "antd";
 import Text from "../../../components/Text/index.jsx";
-import { StyledFormItem, StyledInput } from "./style.js";
 import axios from "axios";
 
 export default function EventoCadastro(){
@@ -111,39 +110,3 @@ export default function EventoCadastro(){
         </Template>
     )
 }
-
-
-const mocked = [
-  {
-      id: 1,
-      nome: 'EcoEvento',
-      responsavel: 'Ana Costa',
-      cnpj: '123-69',
-      localizacao: 'sumpaulo',
-      eventos: 2,
-  },
-  {
-      id: 2,
-      nome: 'EcoEvento2',
-      responsavel: 'Ana Frente',
-      cnpj: '12345',
-      localizacao: 'RioJan',
-      eventos: 3,
-  },
-  {   
-      id: 3,
-      nome: 'EcoEvento3',
-      responsavel: 'Ana Lado',
-      cnpj: '969696',
-      localizacao: 'Ricife',
-      eventos: 4,
-  },
-  {
-      id: 4,
-      nome: 'EcoEvento4',
-      responsavel: 'Ana Cabeça Pra Baixo',
-      cnpj: '????',
-      localizacao: 'Australia',
-      eventos: 0,
-  },
-]

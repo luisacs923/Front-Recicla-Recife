@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Template from "../../components/Template";
-import { Container, Title, SubContainer, SubTitle, CardText } from "./style";
+import { Container, SubContainer, CardText } from "./style";
 import Button from "../../components/Button";
-import { Divider, Input, List } from "antd";
+import { Divider, List } from "antd";
 import Card from "../../components/Card";
-import styles from "../../styles";
 import Text from "../../components/Text";
 import OrganizationDisplay from "./components/OrganizationDisplay";
 import axios from "axios"
@@ -18,7 +17,6 @@ export default function Organizacoes(){
         async function listaOrganizacoes() {
             const result = await axios.get("http://localhost:3000/organizacoes/busca")
             setOrganizacoes(result.data.data);
-            console.log(result.data.data);
         }
         listaOrganizacoes();
     }, [])
@@ -74,46 +72,7 @@ export default function Organizacoes(){
                         </SubContainer>
                     </>
                 )}
-
-
-
-                
             </Container>
         </Template>
     )
 }
-
-const mocked = [
-    {
-        id: 1,
-        nome: 'EcoEvento',
-        responsavel: 'Ana Costa',
-        cnpj: '123-69',
-        localizacao: 'sumpaulo',
-        eventos: 2,
-    },
-    {
-        id: 2,
-        nome: 'EcoEvento2',
-        responsavel: 'Ana Frente',
-        cnpj: '12345',
-        localizacao: 'RioJan',
-        eventos: 3,
-    },
-    {   
-        id: 3,
-        nome: 'EcoEvento3',
-        responsavel: 'Ana Lado',
-        cnpj: '969696',
-        localizacao: 'Ricife',
-        eventos: 4,
-    },
-    {
-        id: 4,
-        nome: 'EcoEvento4',
-        responsavel: 'Ana Cabeça Pra Baixo',
-        cnpj: '????',
-        localizacao: 'Australia',
-        eventos: 0,
-    },
-]

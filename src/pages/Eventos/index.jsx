@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Template from "../../components/Template";
-import { Container, Title, SubContainer, SubTitle, CardText } from "./style";
+import { Container, SubContainer, CardText } from "./style";
 import Button from "../../components/Button";
-import { Divider, Input, List } from "antd";
+import { Divider, List } from "antd";
 import Card from "../../components/Card";
-import styles from "../../styles";
 import Text from "../../components/Text";
 import EventsDisplay from "./components/EventsDisplay";
 import axios from "axios"
@@ -18,7 +17,6 @@ export default function Eventos(){
         async function listaEventos() {
             const result = await axios.get("http://localhost:3000/eventos/busca")
             setEventos(result.data.data);
-            console.log(result.data.data);
         }
         listaEventos();
     }, [])
@@ -76,30 +74,7 @@ export default function Eventos(){
                         </SubContainer>
                     </>
                 )}
-
-
-
-                
             </Container>
         </Template>
     )
 }
-
-const mocked = [
-    {
-      id: 1,
-      nome: "Dia do Meio Ambiente",
-      data: "15/09/2024",
-      localizacao: "Parque Ibirapuera, SP",
-      descricao: "Evento dedicado à promoção de práticas sustentáveis.",
-      estrategias: [{id: 1, nome: "Reciclagem"}, {id: 2, nome: "Redução de Embalagens"}, {id: 3, nome:"Recuperação de Energia"}]
-    },
-    {
-      id: 2,
-      nome: "Dia do Meio Ambiente 2",
-      data: "15/09/2025",
-      localizacao: "Parque Ibirapuera, SP",
-      descricao: "Evento dedicado à promoção de práticas sustentáveis.",
-      estrategias: [{id: 1, nome: "Reciclagem"}, {id: 2, nome: "Redução de Embalagens"}, {id: 3, nome:"Recuperação de Energia"}]
-    },
-  ]

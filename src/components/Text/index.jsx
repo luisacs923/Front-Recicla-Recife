@@ -1,6 +1,6 @@
 import React from "react";
 import { StyledBannerText, StyledBannerTitle, StyledH1, StyledH2, StyledMenuItem, StyledParagraph, StyledText } from "./style";
-import { ConfigProvider, Typography } from "antd";
+import { ConfigProvider } from "antd";
 
 function MenuItem(props) {
   return (

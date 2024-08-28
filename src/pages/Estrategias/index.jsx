@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Template from "../../components/Template";
-import { Container, Title, SubContainer, SubTitle, CardText } from "./style";
+import { Container, SubContainer, CardText } from "./style";
 import Button from "../../components/Button";
-import { Divider, Input, List } from "antd";
+import { Divider, List } from "antd";
 import Card from "../../components/Card";
-import styles from "../../styles";
 import Text from "../../components/Text";
 import StrategyDisplay from "./components/StrategyDisplay";
 import axios from "axios";
@@ -18,7 +17,6 @@ export default function Estrategias(){
         async function listaEstrategias() {
             const result = await axios.get("http://localhost:3000/estrategias/busca")
             setEstrategias(result.data.data);
-            console.log(result.data.data);
         }
         listaEstrategias();
     }, [])
@@ -72,35 +70,7 @@ export default function Estrategias(){
                         </SubContainer>
                     </>
                 )}
-
-
-
-                
             </Container>
         </Template>
     )
 }
-
-const mocked = [
-    {
-      id: 1,
-      tipo: "Reciclagem",
-      efetividade: "Ótimo",
-      descricao_estrategia: "Coleta e separação de materiais recicláveis como papel, plástico e vidro",
-      eventos: 3
-    },
-    {
-      id: 2,
-      tipo: "Redução de Embalagens",
-      efetividade: "Bom",
-      descricao_estrategia: "Implementação de práticas para reduzir o uso de embalagens descartáveis.",
-      eventos: 2
-    },
-    {
-      id: 3,
-      tipo: "Recuperação de Energia",
-      efetividade: "Regular",
-      descricao_estrategia: "Aproveitamento dos resíduos para gerar energia com processos como incineração controlada.",
-      eventos: 1
-    },
-  ]

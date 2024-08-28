@@ -1,10 +1,9 @@
 import React from "react";
 import Template from "../../../components/Template/index.jsx";
-import { Container, SubContainer, } from "./style.js";
+import { Container, SubContainer, StyledFormItem, StyledInput } from "./style.js";
 import Button from "../../../components/Button/index.jsx";
 import { Form, Select } from "antd";
 import Text from "../../../components/Text/index.jsx";
-import { StyledFormItem, StyledInput } from "./style.js";
 import axios from "axios";
 
 export default function EstrategiaCadastro(){

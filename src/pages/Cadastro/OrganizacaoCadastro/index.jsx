@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Template from "../../../components/Template";
-import { Container, SubContainer, } from "./style.js";
+import { Container, SubContainer, StyledFormItem, StyledInput } from "./style.js";
 import Button from "../../../components/Button";
 import { Form } from "antd";
 import Text from "../../../components/Text";
-import { StyledFormItem, StyledInput } from "./style.js";
 import axios from "axios"
 
 

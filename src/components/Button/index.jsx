@@ -1,5 +1,5 @@
 import React from "react";
-import { StyledButton, StyledButtonAntd } from "./style";
+import { StyledButtonAntd } from "./style";
 
 export default function Button(props) {
   return (

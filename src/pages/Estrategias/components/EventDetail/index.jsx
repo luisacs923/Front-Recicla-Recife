@@ -2,9 +2,8 @@ import React from "react";
 import { Container, EventInfo, EventInfoContainer, EventTitle } from "./style";
 
 export default function EventDetail({evento}) {
-
-  //const estrategias = evento.estrategias.map(es => es.nome);
   const dataFormatted = new Date(evento.data_evento).toLocaleDateString();
+  
   return (
     <Container>
       <EventTitle>Evento: {evento.nome_evento}</EventTitle>
