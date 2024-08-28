@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Modal, Select } from "antd";
+import { Form, Modal } from "antd";
 import { StyledFormItem, StyledInput } from "./style";
 import Button from "../../../../components/Button";
 

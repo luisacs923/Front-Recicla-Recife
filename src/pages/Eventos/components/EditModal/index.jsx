@@ -21,7 +21,7 @@ export default function EditModal({evento, onSubmit, loading, ...props}) {
         }
       }
       loadOrganizacoes();
-    })
+    }, [])
 
     const dataEvento = new Date(evento.data_evento)
     const data_evento = [dataEvento.getFullYear(), ("0" + (dataEvento.getMonth() + 1)).slice(-2), ("0" + dataEvento.getDate()).slice(-2)].join("-");

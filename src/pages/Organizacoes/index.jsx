@@ -21,7 +21,7 @@ export default function Organizacoes(){
     async function handleSubmit(data) {
         setEditLoading(true);
         try {
-            await axios.post(`http://localhost:3000/organizacoes/atualizar/${selectedEvent.ID}`, data);
+            await axios.post(`http://localhost:3000/organizacoes/atualizar/${selectedOrganization.ID}`, data);
             setEditOpen(false);
         } catch (error){ 
             console.log("Erro na requisição ao backend");
@@ -30,10 +30,10 @@ export default function Organizacoes(){
         }
     }
 
-    async function handleDelete(ID_evento) {
+    async function handleDelete(ID_organizacao) {
         setDeleteLoading(true);
         try {
-            await axios.delete(`http://localhost:3000/eventos/deletar/${ID_evento}`);
+            await axios.delete(`http://localhost:3000/organizacoes/deletar/${ID_organizacao}`);
             setDeleteOpen(false);
         } catch (error) {
             console.log("Erro ao se comunicar com o backend");

@@ -8,8 +8,13 @@ export default function OrganizationDisplay({organizacao}) {
 
   useEffect(() => {
     async function listarEventos() {
-      const result = await axios.get(`http://localhost:3000/eventos/busca/organizacao/${organizacao.ID}`)
-      setEventos(result.data.data);
+      try {
+        const result = await axios.get(`http://localhost:3000/eventos/busca/organizacao/${organizacao.ID}`)
+        setEventos(result.data.data);
+      } catch (error) {
+        console.log("Erro ao se comunicar com o backend");
+      }
+
     }
     listarEventos();
   }, [organizacao])

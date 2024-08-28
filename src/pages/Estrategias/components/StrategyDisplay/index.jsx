@@ -8,8 +8,12 @@ export default function StrategyDisplay({estrategia}) {
 
   useEffect(() => {
     async function listarEventos() {
-      const result = await axios.get(`http://localhost:3000/eventos/busca/info-from-estrategia/${estrategia.ID}`)
-      setEventos(result.data.data);
+      try {
+        const result = await axios.get(`http://localhost:3000/eventos/busca/info-from-estrategia/${estrategia.ID}`)
+        setEventos(result.data.data);
+      } catch(error) {
+        console.log("Erro ao se comunicar com o backend");
+      }
     }
     listarEventos();
   }, [estrategia])
