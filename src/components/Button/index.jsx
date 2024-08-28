@@ -3,7 +3,7 @@ import { StyledButtonAntd } from "./style";
 
 export default function Button(props) {
   return (
-    <StyledButtonAntd {...props}>
+    <StyledButtonAntd type='primary' {...props}>
       {props.children}
     </StyledButtonAntd>
   )

@@ -8,18 +8,16 @@ const styles = {
 
 export const theme = {
   token: {
-    colorPrimaryHover: styles.primaryColor,
-    colorPrimaryActive: styles.secondaryColor,
+    colorPrimary: styles.primaryColor,
     fontFamily: 'Inter',
-    fontSize: 20,
+    fontSize: 16,
     fontSizeHeading1: 48,
     fontSizeHeading2: 20,
     colorLink: styles.primaryTextColor,
   },
   components: {
     Button: {
-      defaultBg: styles.primaryColor,
-      defaultBorderColor: styles.primaryColor,
+      contentFontSize: 16,
     },
     Divider: {
       textPaddingInline: 0,
@@ -31,10 +29,6 @@ export const theme = {
     Form: {
       labelRequiredFontSize: 12,
     },
-    Input: {
-      activeBorderColor: styles.secondaryColor,
-      activeShadow: '0 0 0 2px rgba(12,	105,	56, 0.1)'
-    }
   }
 }
 

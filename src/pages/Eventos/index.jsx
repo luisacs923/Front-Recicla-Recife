@@ -1,17 +1,32 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createContext } from "react";
 import Template from "../../components/Template";
 import { Container, SubContainer, CardText } from "./style";
 import Button from "../../components/Button";
-import { Divider, List } from "antd";
+import { Divider, List, Modal } from "antd";
 import Card from "../../components/Card";
 import Text from "../../components/Text";
 import EventsDisplay from "./components/EventsDisplay";
 import axios from "axios"
 
+const ModalContext = createContext(null);
+const config = {
+    title: 'Deletar Evento',
+    content: (
+        <>
+            <ModalContext.Consumer>
+                {(evento) => (
+                    <>Excluir o Evento '{evento.nome_evento}'?</>
+                ) }
+            </ModalContext.Consumer>        
+        </>
+    ),
+}
+
 export default function Eventos(){
 
     const [selectedEvent, setSelectedEvent] = useState(null);
     const [eventos, setEventos] = useState([])
+    const [modal, contextHolder] = Modal.useModal();
 
     useEffect(()=> {
         async function listaEventos() {
@@ -57,7 +72,7 @@ export default function Eventos(){
                     </div>
                 </SubContainer>
                 {selectedEvent && (
-                    <>
+                    <ModalContext.Provider value={selectedEvent}>
                         <SubContainer>
                             <Text.H2 style={{textAlign: 'center'}}>Detalhes do Evento {eventos.find(el => el.ID === selectedEvent).nome_evento}</Text.H2>
                             <EventsDisplay evento={eventos.find(m => m.ID === selectedEvent)} />
@@ -67,12 +82,16 @@ export default function Eventos(){
                                 <Button>
                                     Editar Evento
                                 </Button>
-                                <Button>
+                                <Button onClick={async () => {
+                                    const confirmed = await modal.confirm(config);
+                                    console.log("Confirmed: ", confirmed);
+                                }}>
                                     Deletar Evento
                                 </Button>
                             </div>
                         </SubContainer>
-                    </>
+                        {contextHolder}
+                    </ModalContext.Provider>
                 )}
             </Container>
         </Template>

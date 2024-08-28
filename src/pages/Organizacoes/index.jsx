@@ -1,17 +1,32 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createContext } from "react";
 import Template from "../../components/Template";
 import { Container, SubContainer, CardText } from "./style";
 import Button from "../../components/Button";
-import { Divider, List } from "antd";
+import { Divider, List, Modal } from "antd";
 import Card from "../../components/Card";
 import Text from "../../components/Text";
 import OrganizationDisplay from "./components/OrganizationDisplay";
 import axios from "axios"
 
+const ModalContext = createContext(null);
+const config = {
+    title: 'Deletar Organização',
+    content: (
+        <>
+            <ModalContext.Consumer>
+                {(organizacao) => (
+                    <>Excluir a Organizacao '{organizacao.nome_organizacao}'?</>
+                ) }
+            </ModalContext.Consumer>        
+        </>
+    ),
+}
+
 export default function Organizacoes(){
 
     const [selectedOrganization, setSelectedOrganization] = useState(null);
     const [organizacoes, setOrganizacoes] = useState([])
+    const [modal, contextHolder] = Modal.useModal();
 
     useEffect(()=> {
         async function listaOrganizacoes() {
@@ -42,7 +57,7 @@ export default function Organizacoes(){
                             grid={{gutter:32, column: 2}} 
                             dataSource={organizacoes}
                             renderItem={(item) => (
-                                <List.Item key={item.ID} onClick={() => setSelectedOrganization(item.ID)}>
+                                <List.Item key={item.ID} onClick={() => setSelectedOrganization(item)}>
                                     <Card title={item.nome_organizacao} size="small">
                                         <CardText>Responsável: {item.responsavel}</CardText>
                                         <Divider style={{margin: '5px 0px'}} />
@@ -55,22 +70,26 @@ export default function Organizacoes(){
                     </div>
                 </SubContainer>
                 {selectedOrganization && (
-                    <>
+                    <ModalContext.Provider value={selectedOrganization}>
                         <SubContainer>
-                            <Text.H2 style={{textAlign: 'center'}}>Detalhes da Organização {organizacoes.find(el => el.ID === selectedOrganization).nome_organizacao}</Text.H2>
-                            <OrganizationDisplay organizacao={organizacoes.find(m => m.ID === selectedOrganization)} />
+                            <Text.H2 style={{textAlign: 'center'}}>Detalhes da Organização {selectedOrganization.nome_organizacao}</Text.H2>
+                            <OrganizationDisplay organizacao={selectedOrganization} />
                         </SubContainer>
                         <SubContainer>
                             <div style={{display: 'flex', alignContent: 'center', justifyContent:'space-around'}}>
                                 <Button>
                                     Editar Organização
                                 </Button>
-                                <Button>
+                                <Button onClick={async () => {
+                                    const confirmed = await modal.confirm(config);
+                                    console.log("Confirmed: ", confirmed);
+                                }}>
                                     Deletar Organização
                                 </Button>
                             </div>
                         </SubContainer>
-                    </>
+                        {contextHolder}
+                    </ModalContext.Provider>
                 )}
             </Container>
         </Template>
