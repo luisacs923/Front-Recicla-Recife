@@ -67,7 +67,6 @@ export default function OrganizacaoCadastro(){
                                 {
                                   required: true,
                                   message: "Campo Obrigatório",
-                                  
                                 },
                               ]}
                             style={{letterSpacing: -1}}

@@ -123,7 +123,7 @@ export default function Eventos(){
                         />
                         <DeleteModal 
                             open={deleteOpen} 
-                            title="Deletar Event" 
+                            title="Deletar Evento" 
                             onOk={() => handleDelete(selectedEvent.ID)} 
                             evento={selectedEvent} 
                             onCancel={() => {setDeleteOpen(false)}} 

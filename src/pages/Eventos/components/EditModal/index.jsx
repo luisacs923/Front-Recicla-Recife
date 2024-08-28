@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Form, Modal, Select } from "antd";
-import { useForm } from "antd/es/form/Form";
 import { StyledFormItem, StyledInput } from "./style";
 import Button from "../../../../components/Button";
 
 export default function EditModal({evento, onSubmit, loading, ...props}) {
-    const [form] = useForm();
+    const [form] = Form.useForm();
 
     const [organizacoes, setOrganizacoes] = useState([]);
     const [orgLoading, setOrgLoading] = useState(true);
@@ -29,13 +28,18 @@ export default function EditModal({evento, onSubmit, loading, ...props}) {
 
     return (
       <Modal {...props}>
-        <Form layout="vertical" form={form} initialValues={{
-          ID_organizacao: organizacoes.length === 0 ? undefined : evento.ID_organizacao,
-          nome_evento: evento.nome_evento,
-          localizacao_evento: evento.localizacao_evento,
-          data_evento,
-          descricao_evento: evento.descricao_evento,
-        }} onFinish={onSubmit}>
+        <Form 
+          layout="vertical" 
+          form={form} 
+          initialValues={{
+            ID_organizacao: organizacoes.length === 0 ? undefined : evento.ID_organizacao,
+            nome_evento: evento.nome_evento,
+            localizacao_evento: evento.localizacao_evento,
+            data_evento,
+            descricao_evento: evento.descricao_evento,
+          }} 
+          onFinish={onSubmit}
+        >
           <StyledFormItem
                 name='ID_organizacao'
                 label='Organização'

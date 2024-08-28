@@ -2,36 +2,58 @@ import React, { useState, useEffect, createContext } from "react";
 import Template from "../../components/Template";
 import { Container, SubContainer, CardText } from "./style";
 import Button from "../../components/Button";
-import { Divider, List, Modal } from "antd";
+import { Divider, List } from "antd";
 import Card from "../../components/Card";
 import Text from "../../components/Text";
 import OrganizationDisplay from "./components/OrganizationDisplay";
 import axios from "axios"
 
-const ModalContext = createContext(null);
-const config = {
-    title: 'Deletar Organização',
-    content: (
-        <>
-            <ModalContext.Consumer>
-                {(organizacao) => (
-                    <>Excluir a Organizacao '{organizacao.nome_organizacao}'?</>
-                ) }
-            </ModalContext.Consumer>        
-        </>
-    ),
-}
-
 export default function Organizacoes(){
 
     const [selectedOrganization, setSelectedOrganization] = useState(null);
     const [organizacoes, setOrganizacoes] = useState([])
-    const [modal, contextHolder] = Modal.useModal();
+    const [loading, setLoading] = useState(false);
+    const [editOpen, setEditOpen] = useState(false);
+    const [editLoading, setEditLoading] = useState(false);
+    const [deleteOpen, setDeleteOpen] = useState(false);
+    const [deleteLoading, setDeleteLoading] = useState(false);
+
+    async function handleSubmit(data) {
+        setEditLoading(true);
+        try {
+            await axios.post(`http://localhost:3000/organizacoes/atualizar/${selectedEvent.ID}`, data);
+            setEditOpen(false);
+        } catch (error){ 
+            console.log("Erro na requisição ao backend");
+        } finally {
+            setEditLoading(false);   
+        }
+    }
+
+    async function handleDelete(ID_evento) {
+        setDeleteLoading(true);
+        try {
+            await axios.delete(`http://localhost:3000/eventos/deletar/${ID_evento}`);
+            setDeleteOpen(false);
+        } catch (error) {
+            console.log("Erro ao se comunicar com o backend");
+        } finally {
+            setDeleteLoading(false);
+        }
+    }
 
     useEffect(()=> {
         async function listaOrganizacoes() {
-            const result = await axios.get("http://localhost:3000/organizacoes/busca")
-            setOrganizacoes(result.data.data);
+            setLoading(true);
+            try {
+                const result = await axios.get("http://localhost:3000/organizacoes/busca")
+                setOrganizacoes(result.data.data);
+            } catch (error) {
+                console.log("Erro ao se comunicar com o backend");
+            } finally {
+                setLoading(false);
+                setSelectedOrganization(null);
+            }
         }
         listaOrganizacoes();
     }, [])
@@ -54,6 +76,7 @@ export default function Organizacoes(){
                     <div>
                         <Text.H2>Organizações Cadastradas:</Text.H2>
                         <List 
+                            loading={loading}
                             grid={{gutter:32, column: 2}} 
                             dataSource={organizacoes}
                             renderItem={(item) => (
@@ -69,27 +92,40 @@ export default function Organizacoes(){
                             )} />
                     </div>
                 </SubContainer>
-                {selectedOrganization && (
-                    <ModalContext.Provider value={selectedOrganization}>
+                {(selectedOrganization && !loading) && (
+                    <>
                         <SubContainer>
                             <Text.H2 style={{textAlign: 'center'}}>Detalhes da Organização {selectedOrganization.nome_organizacao}</Text.H2>
                             <OrganizationDisplay organizacao={selectedOrganization} />
                         </SubContainer>
                         <SubContainer>
                             <div style={{display: 'flex', alignContent: 'center', justifyContent:'space-around'}}>
-                                <Button>
+                                <Button onClick={() => setEditOpen(true)}>
                                     Editar Organização
                                 </Button>
-                                <Button onClick={async () => {
-                                    const confirmed = await modal.confirm(config);
-                                    console.log("Confirmed: ", confirmed);
-                                }}>
+                                <Button onClick={() => setDeleteOpen(true)}>
                                     Deletar Organização
                                 </Button>
                             </div>
                         </SubContainer>
-                        {contextHolder}
-                    </ModalContext.Provider>
+                        <EditModal 
+                            open={editOpen} 
+                            title="Editar Organização" 
+                            onSubmit={handleSubmit} 
+                            footer={[]} 
+                            organizacao={selectedOrganization} 
+                            loading={editLoading} 
+                            onCancel={() => setEditOpen(false)} 
+                        />
+                        <DeleteModal 
+                            open={deleteOpen} 
+                            title="Deletar Organização" 
+                            onOk={() => handleDelete(selectedOrganization.ID)} 
+                            organizacao={selectedOrganization} 
+                            onCancel={() => {setDeleteOpen(false)}} 
+                            confirmLoading={deleteLoading}
+                        />
+                    </>
                 )}
             </Container>
         </Template>
