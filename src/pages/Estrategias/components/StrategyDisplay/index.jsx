@@ -1,12 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container, DetailContainer, DetailsContainer, TitleContainer } from "./style";
 import EventDetail from "../EventDetail";
+import axios from "axios";
 
 export default function StrategyDisplay({estrategia}) {
+  const [eventos, setEventos] = useState([]);
+
+  useEffect(() => {
+    async function listarEventos() {
+      const result = await axios.get(`http://localhost:3000/eventos/busca/info-from-estrategia/${estrategia.ID}`)
+      setEventos(result.data.data);
+    }
+    listarEventos();
+  }, [estrategia])
+
   return (
     <Container>
       <TitleContainer>
-        {estrategia.tipo}
+        {estrategia.tipo_estrategia}
       </TitleContainer>
       <DetailsContainer>
         <DetailContainer style={{flex: 1}}>
@@ -18,7 +29,7 @@ export default function StrategyDisplay({estrategia}) {
           Descrição: {estrategia.descricao_estrategia}
         </DetailContainer>
       </DetailsContainer>
-      {mocked.map(ev => (<EventDetail key={ev.id} evento={ev} />))}
+      {eventos.map(ev => (<EventDetail key={ev.ID} evento={ev} />))}
     </Container>
   );
 }

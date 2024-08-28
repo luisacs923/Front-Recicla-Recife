@@ -1,13 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Template from "../../../components/Template";
 import { Container, SubContainer, } from "./style.js";
 import Button from "../../../components/Button";
 import { Form } from "antd";
 import Text from "../../../components/Text";
 import { StyledFormItem, StyledInput } from "./style.js";
+import axios from "axios"
+
 
 export default function OrganizacaoCadastro(){
     const [form] = Form.useForm();
+    const [organizacao,setOrganizacao] = useState([])
+    useEffect(() => {
+      // const result = axios.post("http://localhost:3000/organizacoes/busca")
+      // // setOrganizacao(result.data);
+      // console.log(result);
+    }, [])
 
     const onFinish = (values) => {
         console.log(values);

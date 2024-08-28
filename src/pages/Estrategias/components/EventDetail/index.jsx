@@ -3,29 +3,29 @@ import { Container, EventInfo, EventInfoContainer, EventTitle } from "./style";
 
 export default function EventDetail({evento}) {
 
-  const estrategias = evento.estrategias.map(es => es.nome);
-
+  //const estrategias = evento.estrategias.map(es => es.nome);
+  const dataFormatted = new Date(evento.data_evento).toLocaleDateString();
   return (
     <Container>
-      <EventTitle>Evento: {evento.nome}</EventTitle>
+      <EventTitle>Evento: {evento.nome_evento}</EventTitle>
       <EventInfoContainer>
         <EventInfo>
-          Data: {evento.data}
+          Data: {dataFormatted}
         </EventInfo>
         <EventInfo>
-          Localização: {evento.localizacao}
-        </EventInfo>
-      </EventInfoContainer>
-      <EventInfoContainer>
-        <EventInfo>
-          Descrição: {evento.descricao}
+          Localização: {evento.localizacao_evento}
         </EventInfo>
       </EventInfoContainer>
       <EventInfoContainer>
+        <EventInfo>
+          Descrição: {evento.descricao_evento}
+        </EventInfo>
+      </EventInfoContainer>
+      {/* <EventInfoContainer>
         <EventInfo>
           Estratégias Associadas: {estrategias.join(", ")}
         </EventInfo>
-      </EventInfoContainer>
+      </EventInfoContainer> */}
     </Container>
   )
 }
