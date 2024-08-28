@@ -7,6 +7,8 @@ import Card from "../../components/Card";
 import Text from "../../components/Text";
 import OrganizationDisplay from "./components/OrganizationDisplay";
 import axios from "axios"
+import EditModal from "./components/EditModal";
+import DeleteModal from "./components/DeleteModal";
 
 export default function Organizacoes(){
 
@@ -108,7 +110,7 @@ export default function Organizacoes(){
                                 </Button>
                             </div>
                         </SubContainer>
-                        <EditModal 
+                        <EditModal
                             open={editOpen} 
                             title="Editar Organização" 
                             onSubmit={handleSubmit} 

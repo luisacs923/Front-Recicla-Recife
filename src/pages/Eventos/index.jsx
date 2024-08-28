@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Template from "../../components/Template";
 import { Container, SubContainer, CardText } from "./style";
 import Button from "../../components/Button";
-import { Divider, List } from "antd";
+import { Divider, List, message } from "antd";
 import Card from "../../components/Card";
 import Text from "../../components/Text";
 import EventsDisplay from "./components/EventsDisplay";
@@ -20,6 +20,8 @@ export default function Eventos(){
     const [deleteOpen, setDeleteOpen] = useState(false);
     const [deleteLoading, setDeleteLoading] = useState(false);
 
+    const [messageApi, contextHolder] = message.useMessage();
+
     async function handleSubmit(data) {
         setEditLoading(true);
         try {
@@ -27,7 +29,11 @@ export default function Eventos(){
             await axios.post(`http://localhost:3000/eventos/associar/${selectedEvent.ID}`, { estrategias: data.estrategias });
             setEditOpen(false);
         } catch (error){ 
-            console.log("Erro na requisição ao backend");
+            console.log(error);
+            messageApi.open({
+                type: 'error',
+                content: 'Erro ao enviar dados ao servidor'
+            })
         } finally {
             setEditLoading(false);   
         }
@@ -68,6 +74,7 @@ export default function Eventos(){
 
     return (
         <Template>
+            {contextHolder}
             <Container>
                 <Text.H1>Eventos</Text.H1>
                 <SubContainer>

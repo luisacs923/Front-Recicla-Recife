@@ -7,6 +7,8 @@ import Card from "../../components/Card";
 import Text from "../../components/Text";
 import StrategyDisplay from "./components/StrategyDisplay";
 import axios from "axios";
+import EditModal from "./components/EditModal";
+import DeleteModal from "./components/DeleteModal";
 
 export default function Estrategias(){
 
@@ -105,7 +107,7 @@ export default function Estrategias(){
                                 </Button>
                             </div>
                         </SubContainer>
-                        <EditModal 
+                        <EditModal
                             open={editOpen} 
                             title="Editar Estratégia" 
                             onSubmit={handleSubmit} 
@@ -114,7 +116,7 @@ export default function Estrategias(){
                             loading={editLoading} 
                             onCancel={() => setEditOpen(false)} 
                         />
-                        <DeleteModal 
+                        <DeleteModal
                             open={deleteOpen} 
                             title="Deletar Estratégia" 
                             onOk={() => handleDelete(selectedStrategy.ID)} 
