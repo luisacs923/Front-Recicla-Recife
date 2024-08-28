@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Form, Modal, Select } from "antd";
+import { Checkbox, Form, Modal, Select, Spin } from "antd";
 import { StyledFormItem, StyledInput } from "./style";
 import Button from "../../../../components/Button";
 
@@ -7,20 +7,50 @@ export default function EditModal({evento, onSubmit, loading, ...props}) {
     const [form] = Form.useForm();
 
     const [organizacoes, setOrganizacoes] = useState([]);
-    const [orgLoading, setOrgLoading] = useState(true);
+    const [estrategias, setEstrategias] = useState([]);
+    const [estrategiasDoEvento, setEstrategiasDoEvento] = useState([]);
+    const [orgLoading, setOrgLoading] = useState(false);
+    const [estrategiasLoading, setEstrategiasLoading] = useState(false);
+
+    const opcoesEstrategias = estrategias.map(st => ({label: st.tipo_estrategia, value: st.ID}));
 
     useEffect(() => {
       async function loadOrganizacoes() {
+        setOrgLoading(true);
         try {
           const result = await axios.get("http://localhost:3000/organizacoes/busca");
           setOrganizacoes(result.data.data);
         } catch (error) {
           console.log("Erro ao se comunicar com o backend");
+          setOrganizacoes(mockOrg);
         } finally {
           setOrgLoading(false);
         }
       }
+      async function loadEstrategias() {
+        setEstrategiasLoading(true);
+        try {
+          const result = await axios.get("http://localhost:3000/estrategias/busca");
+          setEstrategias(result.data.data);
+        } catch (error) {
+          console.log("Erro ao se comunicar com o backend");
+          setEstrategias(mockEst);
+        } finally {
+          setEstrategiasLoading(false);
+        }
+      }
+      async function listEstrategias() {
+        try {
+          const result = await axios.get(`http://localhost:3000/estrategias/busca/estrategia-from-evento/${evento.ID}`)
+          setEstrategiasDoEvento(result.data.data);
+        } catch(error) {
+          console.log("Erro ao se comunicar com o backend");
+          setEstrategiasDoEvento(mockEstEv);
+        }
+      }
       loadOrganizacoes();
+      loadEstrategias();
+      listEstrategias();
     }, [])
 
     const dataEvento = new Date(evento.data_evento)
@@ -37,6 +67,7 @@ export default function EditModal({evento, onSubmit, loading, ...props}) {
             localizacao_evento: evento.localizacao_evento,
             data_evento,
             descricao_evento: evento.descricao_evento,
+            estrategias: estrategiasDoEvento.map(st => st.ID),
           }} 
           onFinish={onSubmit}
         >
@@ -111,6 +142,16 @@ export default function EditModal({evento, onSubmit, loading, ...props}) {
             >   
                 <StyledInput.TextArea />
             </StyledFormItem>
+            <StyledFormItem 
+              name='estrategias'
+              label="Estratégias"
+              style={{letterSpacing: -1}}  
+            >
+              {estrategiasLoading ? <Spin /> : (
+                <Checkbox.Group options={opcoesEstrategias} />
+              )}
+              
+            </StyledFormItem>
             <div style={{display: 'flex', justifyContent: 'center', width: '100%'}}>
               <Button htmlType="submit" loading={loading}>
                   Atualizar
@@ -121,3 +162,22 @@ export default function EditModal({evento, onSubmit, loading, ...props}) {
     )
 
 }
+
+const mockOrg = [{ID: 1, nome_organizacao: "Organizacao 1", cnpj: "CNPJ 1", responsavel: "Responsavel 1", localizacao_organizacao: "Localizacao Organizacao 1"}]
+const mockEst = [
+  {ID: 1, tipo_estrategia: "Estrategia 1", descricao_estrategia: "Descricao Estrategia 1", efetividade: "Efetividade 1"},
+  {ID: 2, tipo_estrategia: "Estrategia 2", descricao_estrategia: "Descricao Estrategia 2", efetividade: "Efetividade 2"},
+  {ID: 3, tipo_estrategia: "Estrategia 3", descricao_estrategia: "Descricao Estrategia 3", efetividade: "Efetividade 3"},
+  {ID: 4, tipo_estrategia: "Estrategia 4", descricao_estrategia: "Descricao Estrategia 4", efetividade: "Efetividade 4"},
+  {ID: 5, tipo_estrategia: "Estrategia 5", descricao_estrategia: "Descricao Estrategia 5", efetividade: "Efetividade 5"},
+  {ID: 6, tipo_estrategia: "Estrategia 6", descricao_estrategia: "Descricao Estrategia 6", efetividade: "Efetividade 6"},
+  {ID: 7, tipo_estrategia: "Estrategia 7", descricao_estrategia: "Descricao Estrategia 7", efetividade: "Efetividade 7"},
+  {ID: 8, tipo_estrategia: "Estrategia 8", descricao_estrategia: "Descricao Estrategia 8", efetividade: "Efetividade 8"},
+  {ID: 9, tipo_estrategia: "Estrategia 9", descricao_estrategia: "Descricao Estrategia 9", efetividade: "Efetividade 9"},
+  {ID: 10, tipo_estrategia: "Estrategia 10", descricao_estrategia: "Descricao Estrategia 10", efetividade: "Efetividade 10"},
+  {ID: 11, tipo_estrategia: "Estrategia 11", descricao_estrategia: "Descricao Estrategia 11", efetividade: "Efetividade 11"}
+]
+const mockEstEv = [
+  {ID: 1, tipo_estrategia: "Estrategia 1", descricao_estrategia: "Descricao Estrategia 1", efetividade: "Efetividade 1"},
+  {ID: 2, tipo_estrategia: "Estrategia 2", descricao_estrategia: "Descricao Estrategia 2", efetividade: "Efetividade 2"}
+]

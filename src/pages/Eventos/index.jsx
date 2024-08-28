@@ -24,6 +24,7 @@ export default function Eventos(){
         setEditLoading(true);
         try {
             await axios.post(`http://localhost:3000/eventos/atualizar/${selectedEvent.ID}`, data);
+            await axios.post(`http://localhost:3000/eventos/associar/${selectedEvent.ID}`, { estrategias: data.estrategias });
             setEditOpen(false);
         } catch (error){ 
             console.log("Erro na requisição ao backend");
@@ -52,6 +53,7 @@ export default function Eventos(){
                 setEventos(result.data.data);
             } catch (error) {
                 console.log("Erro ao se comunicar com o backend");
+                setEventos(mock);
             } finally {
                 setLoading(false);
                 setSelectedEvent(null);
@@ -135,3 +137,5 @@ export default function Eventos(){
         </Template>
     )
 }
+
+const mock = [{ID: 1, nome_evento: "Evento 1", data_evento: new Date().toJSON(), ID_organizacao: 1, localizacao_evento: "Localizacao 1", descricao_evento: "Descricao Evento 1"}]

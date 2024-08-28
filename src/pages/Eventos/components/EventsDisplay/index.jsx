@@ -14,6 +14,7 @@ export default function EventsDisplay({evento}) {
         setEstrategias(result.data.data);
       } catch(error) {
         console.log("Erro ao se comunicar com o backend");
+        setEstrategias(mock);
       }
     }
     listarEstrategias();
@@ -41,3 +42,5 @@ export default function EventsDisplay({evento}) {
     </Container>
   );
 }
+
+const mock = [{ID: 1, tipo_estrategia: "Estrategia 1", efetividade: "Efetividade 1", descricao_estrategia: "Descricao Estrategia 1"}]
