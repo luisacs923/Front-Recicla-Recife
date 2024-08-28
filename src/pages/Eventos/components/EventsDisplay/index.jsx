@@ -9,8 +9,12 @@ export default function EventsDisplay({evento}) {
 
   useEffect(() =>{
     async function listarEstrategias() {
-      const result = await axios.get(`http://localhost:3000/estrategias/busca/estrategia-from-evento/${evento.ID}`)
-      setEstrategias(result.data.data);
+      try {
+        const result = await axios.get(`http://localhost:3000/estrategias/busca/estrategia-from-evento/${evento.ID}`)
+        setEstrategias(result.data.data);
+      } catch(error) {
+        console.log("Erro ao se comunicar com o backend");
+      }
     }
     listarEstrategias();
   } , [evento])
