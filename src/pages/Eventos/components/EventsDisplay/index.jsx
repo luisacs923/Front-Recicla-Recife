@@ -13,7 +13,7 @@ export default function EventsDisplay({evento}) {
         const result = await axios.get(`http://localhost:3000/estrategias/busca/estrategia-from-evento/${evento.ID}`)
         setEstrategias(result.data.data);
       } catch(error) {
-        console.log("Erro ao se comunicar com o backend");
+        console.log("Erro ao se comunicar com o backend", error);
         setEstrategias(mock);
       }
     }

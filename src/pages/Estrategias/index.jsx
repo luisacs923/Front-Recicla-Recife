@@ -23,8 +23,9 @@ export default function Estrategias(){
     async function handleSubmit(data) {
         setEditLoading(true);
         try {
-            await axios.post(`http://localhost:3000/estrategias/atualizar/${selectedStrategy.ID}`, data);
+            await axios.put(`http://localhost:3000/estrategias/atualizar/${selectedStrategy.ID}`, data);
             setEditOpen(false);
+            window.location.reload();
         } catch (error){ 
             console.log("Erro na requisição ao backend");
         } finally {
@@ -42,6 +43,7 @@ export default function Estrategias(){
         } finally {
             setDeleteLoading(false);
         }
+        window.location.reload();
     }
 
     useEffect(()=> {
@@ -114,14 +116,14 @@ export default function Estrategias(){
                             footer={[]} 
                             estrategia={selectedStrategy} 
                             loading={editLoading} 
-                            onCancel={() => setEditOpen(false)} 
+                            onCancel={() => {setEditOpen(false); window.location.reload()}}
                         />
                         <DeleteModal
                             open={deleteOpen} 
                             title="Deletar Estratégia" 
                             onOk={() => handleDelete(selectedStrategy.ID)} 
                             estrategia={selectedStrategy} 
-                            onCancel={() => {setDeleteOpen(false)}} 
+                            onCancel={() => {setDeleteOpen(false);}} 
                             confirmLoading={deleteLoading}
                         />
                     </>

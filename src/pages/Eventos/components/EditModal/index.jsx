@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Checkbox, Form, Modal, Select, Spin } from "antd";
 import { StyledFormItem, StyledInput } from "./style";
 import Button from "../../../../components/Button";
+import axios from "axios";
 
 export default function EditModal({evento, onSubmit, loading, ...props}) {
     const [form] = Form.useForm();
@@ -13,7 +14,7 @@ export default function EditModal({evento, onSubmit, loading, ...props}) {
     const [estrategiasLoading, setEstrategiasLoading] = useState(false);
 
     const opcoesEstrategias = estrategias.map(st => ({label: st.tipo_estrategia, value: st.ID}));
-
+   
     useEffect(() => {
       async function loadOrganizacoes() {
         setOrgLoading(true);
@@ -21,7 +22,7 @@ export default function EditModal({evento, onSubmit, loading, ...props}) {
           const result = await axios.get("http://localhost:3000/organizacoes/busca");
           setOrganizacoes(result.data.data);
         } catch (error) {
-          console.log("Erro ao se comunicar com o backend");
+          console.log("Erro ao se comunicar com o backend", error);
           setOrganizacoes(mockOrg);
         } finally {
           setOrgLoading(false);
@@ -33,7 +34,7 @@ export default function EditModal({evento, onSubmit, loading, ...props}) {
           const result = await axios.get("http://localhost:3000/estrategias/busca");
           setEstrategias(result.data.data);
         } catch (error) {
-          console.log("Erro ao se comunicar com o backend");
+          console.log("Erro ao se comunicar com o backend", error);
           setEstrategias(mockEst);
         } finally {
           setEstrategiasLoading(false);
@@ -44,14 +45,14 @@ export default function EditModal({evento, onSubmit, loading, ...props}) {
           const result = await axios.get(`http://localhost:3000/estrategias/busca/estrategia-from-evento/${evento.ID}`)
           setEstrategiasDoEvento(result.data.data);
         } catch(error) {
-          console.log("Erro ao se comunicar com o backend");
+          console.log("Erro ao se comunicar com o backend", error);
           setEstrategiasDoEvento(mockEstEv);
         }
       }
       loadOrganizacoes();
       loadEstrategias();
       listEstrategias();
-    }, [])
+    }, [evento])
 
     const dataEvento = new Date(evento.data_evento)
     const data_evento = [dataEvento.getFullYear(), ("0" + (dataEvento.getMonth() + 1)).slice(-2), ("0" + dataEvento.getDate()).slice(-2)].join("-");

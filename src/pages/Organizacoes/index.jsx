@@ -23,8 +23,9 @@ export default function Organizacoes(){
     async function handleSubmit(data) {
         setEditLoading(true);
         try {
-            await axios.post(`http://localhost:3000/organizacoes/atualizar/${selectedOrganization.ID}`, data);
+            await axios.put(`http://localhost:3000/organizacoes/atualizar/${selectedOrganization.ID}`, data);
             setEditOpen(false);
+            window.location.reload();
         } catch (error){ 
             console.log("Erro na requisição ao backend");
         } finally {
@@ -42,6 +43,7 @@ export default function Organizacoes(){
         } finally {
             setDeleteLoading(false);
         }
+        window.location.reload();
     }
 
     useEffect(()=> {
@@ -117,14 +119,14 @@ export default function Organizacoes(){
                             footer={[]} 
                             organizacao={selectedOrganization} 
                             loading={editLoading} 
-                            onCancel={() => setEditOpen(false)} 
+                            onCancel={() => {setEditOpen(false); window.location.reload();}} 
                         />
                         <DeleteModal 
                             open={deleteOpen} 
                             title="Deletar Organização" 
                             onOk={() => handleDelete(selectedOrganization.ID)} 
                             organizacao={selectedOrganization} 
-                            onCancel={() => {setDeleteOpen(false)}} 
+                            onCancel={() => {setDeleteOpen(false); }} 
                             confirmLoading={deleteLoading}
                         />
                     </>

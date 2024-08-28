@@ -25,9 +25,10 @@ export default function Eventos(){
     async function handleSubmit(data) {
         setEditLoading(true);
         try {
-            await axios.post(`http://localhost:3000/eventos/atualizar/${selectedEvent.ID}`, data);
+            await axios.put(`http://localhost:3000/eventos/atualizar/${selectedEvent.ID}`, data);
             await axios.post(`http://localhost:3000/eventos/associar/${selectedEvent.ID}`, { estrategias: data.estrategias });
             setEditOpen(false);
+            window.location.reload();
         } catch (error){ 
             console.log(error);
             messageApi.open({
@@ -49,6 +50,7 @@ export default function Eventos(){
         } finally {
             setDeleteLoading(false);
         }
+        window.location.reload();
     }
 
     useEffect(()=> {
@@ -128,14 +130,14 @@ export default function Eventos(){
                             footer={[]} 
                             evento={selectedEvent} 
                             loading={editLoading} 
-                            onCancel={() => setEditOpen(false)} 
+                            onCancel={() => {setEditOpen(false); window.location.reload();}}
                         />
                         <DeleteModal 
                             open={deleteOpen} 
                             title="Deletar Evento" 
                             onOk={() => handleDelete(selectedEvent.ID)} 
                             evento={selectedEvent} 
-                            onCancel={() => {setDeleteOpen(false)}} 
+                            onCancel={() => {setDeleteOpen(false); }} 
                             confirmLoading={deleteLoading}
                         />
                     </> 
